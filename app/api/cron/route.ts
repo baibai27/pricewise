@@ -10,7 +10,7 @@ import {
 import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
 import { NextResponse } from "next/server";
 
-export const maxDuration = 300;
+export const maxDuration = 10;
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -71,6 +71,7 @@ export async function GET() {
     );
     return NextResponse.json({ message: "success", data: updateProducts });
   } catch (error) {
+    console.log(error);
     throw new Error("Error in GET : Failed to connect to MongoDB");
   }
 }
