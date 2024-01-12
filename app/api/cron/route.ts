@@ -1,6 +1,6 @@
 import { connectToDB } from "@/lib/mongoose";
 import Product from "@/lib/models/product.model";
-import { scrapeAmazonProduct } from "@/lib/scraper";
+import { scrapedAmazonProduct } from "@/lib/scraper";
 import {
   getAveragePrice,
   getHighestPrice,
@@ -20,14 +20,14 @@ export async function GET() {
     // 1. scrape latest product details and update db
     const updateProducts = await Promise.all(
       products.map(async (currentProduct) => {
-        const scrapedProduct = await scrapeAmazonProduct(currentProduct.url);
+        const scrapedProduct = await scrapedAmazonProduct(currentProduct.url);
         if (!scrapedProduct) {
           throw new Error("Error in GET : Failed to scrape product");
         }
         const updatedPriceHistory = [
           ...currentProduct.priceHistory,
           {
-            price: scrapedProduct.currentProduct,
+            price: scrapedProduct.currentPrice,
           },
         ];
         const product = {
