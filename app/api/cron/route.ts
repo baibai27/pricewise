@@ -1,5 +1,5 @@
 import { connectToDB } from "@/lib/mongoose";
-import Product from "@/lib/models/Product.model";
+import Product from "@/lib/models/product.model";
 import { scrapeAmazonProduct } from "@/lib/scraper";
 import {
   getAveragePrice,
