@@ -77,6 +77,7 @@ export async function scrapedAmazonProduct(url: string) {
       averagePrice: Number(currentPrice) || Number(originalPrice),
       reviewsCount: 130,
       category: "category",
+      stars: 4.5,
     };
 
     return data;
